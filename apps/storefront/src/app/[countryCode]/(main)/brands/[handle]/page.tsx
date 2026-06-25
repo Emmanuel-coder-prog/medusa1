@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ countryCo
   const brand = await getBrandByHandle(handle)
 
   return {
-    title: `${brand.brand?.name || handle} | Medusa Store`,
+    title: `${brand.brand?.name || handle} | Nuel Store`,
     description: `Products from ${brand.brand?.name || handle}`,
   }
 }
