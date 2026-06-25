@@ -31,7 +31,7 @@ async function fetchBrands(): Promise<BrandsResponse> {
 }
 
 async function fetchProductBrand(productId: string): Promise<string | null> {
-  const response = await fetch(`/admin/products/${productId}`, {
+  const response = await fetch(`/admin/products/${productId}/brand`, {
     credentials: "include",
     headers: {
       Accept: "application/json",
@@ -43,9 +43,7 @@ async function fetchProductBrand(productId: string): Promise<string | null> {
   }
 
   const payload = await response.json()
-  const links = payload.product?.links || []
-  const brandLink = links.find((link: any) => link?.id === "brand")
-  return brandLink?.brand?.id || null
+  return payload?.brand?.id ?? payload?.product?.metadata?.brand_id ?? null
 }
 
 async function saveProductBrand(productId: string, brandId: string | null) {
@@ -118,7 +116,6 @@ const ProductBrandWidget = () => {
         <Text weight="plus">Brand</Text>
         <Label htmlFor="product-brand">Assign a brand to this product</Label>
         <Select
-          id="product-brand"
           value={selectedBrandId}
           onValueChange={handleChange}
           disabled={isLoading || saving}

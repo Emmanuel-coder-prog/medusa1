@@ -1,7 +1,8 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type BrandModuleService from "../../../modules/brand/service"
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
-  const brandModuleService = req.scope.resolve("brand")
+  const brandModuleService = req.scope.resolve("brand") as BrandModuleService
 
   const limit = Number(req.query.limit) || 20
   const offset = Number(req.query.offset) || 0
@@ -25,7 +26,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 }
 
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
-  const brandModuleService = req.scope.resolve("brand")
+  const brandModuleService = req.scope.resolve("brand") as BrandModuleService
   const { name, slug, description, logo_url } = req.body as {
     name?: string
     slug?: string
