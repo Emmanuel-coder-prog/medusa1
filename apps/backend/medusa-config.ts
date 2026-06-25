@@ -108,7 +108,12 @@ module.exports = defineConfig({
         ],
       },
     },
+    {
+      resolve: "./src/modules/brand",
+    },
   ],
+
+  
   // plugins: [
   //   {
   //     resolve: "@lambdacurry/medusa-product-reviews",

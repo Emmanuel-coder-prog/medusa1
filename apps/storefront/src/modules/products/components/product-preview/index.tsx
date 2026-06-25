@@ -4,6 +4,7 @@ import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
+import ProductBrandBadge from "./brand-badge"
 
 export default async function ProductPreview({
   product,
@@ -37,9 +38,12 @@ export default async function ProductPreview({
           isFeatured={isFeatured}
         />
         <div className="flex txt-compact-medium mt-4 justify-between">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
-            {product.title}
-          </Text>
+          <div className="flex flex-col gap-y-1">
+            <Text className="text-ui-fg-subtle" data-testid="product-title">
+              {product.title}
+            </Text>
+            <ProductBrandBadge product={product} />
+          </div>
           <div className="flex items-center gap-x-2">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
